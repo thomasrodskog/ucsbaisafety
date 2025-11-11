@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "sections": {
+    "about": true,
+    "activities": true,
+    "events": false,
+    "projects": false,
+    "resources": false,
+    "team": false,
+    "faq": true,
+    "join": false
+  },
+  "font": "Inter"
+}
