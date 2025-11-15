@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,7 +16,6 @@
   <meta name="twitter:description" content="Research, discussions, projects, and outreach focused on making AI safe and beneficial." />
   <meta name="twitter:image" content="https://ucsbaisafety.org/assets/logo.png" />
   <meta name="theme-color" content="#FAF8F5" />
-  <!-- Structured Data for Google -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -37,576 +36,610 @@
     }
   }
   </script>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/logo.png" />
-  <link rel="apple-touch-icon" href="assets/logo.png" />
-  <link rel="shortcut icon" type="image/png" href="assets/logo.png" />
-  <link rel="icon" href="favicon.ico" />
-  <!-- Web fonts -->
+  <link rel="icon" type="image/png" href="assets/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    /* --- CSS Variables & Resets --- */
-    :root{
-      --font-sans: 'Inter', ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
-
-      /* UCSB-inspired Warm Palette (Light Mode Default) */
-      --bg: #FAF8F5;           /* Soft cream background */
-      --bg-soft: #FFFEFB;      /* Warm white */
-      --panel: #FFFFFF;         /* White cards */
-      --text: #1A1614;          /* Rich dark brown */
-      --text-soft: #4A4340;     /* Warm gray for body text */
-      --muted: #6B6461;         /* Muted warm gray */
-
-      /* UCSB Colors with warm variations */
-      --navy: #003660;          /* UCSB Navy - primary */
-      --navy-soft: #0A4A7A;     /* Lighter navy */
-      --gold: #FEBC11;          /* UCSB Gold */
-      --gold-burnt: #DCA945;    /* Burnt gold accent */
-      --coral: #E8956F;         /* Warm coral accent */
-      --sage: #8FAA96;          /* Soft sage green */
-
-      --accent: var(--gold-burnt);
-      --shadow-soft: 0 2px 12px rgba(106, 65, 28, 0.06);
-      --shadow: 0 4px 24px rgba(106, 65, 28, 0.08);
-      --radius: 20px;
-      --radius-sm: 14px;
-      --maxw: 1280px;
-      --space-xs: 8px;
-      --space-sm: 12px;
-      --space-md: 20px;
-      --space-lg: 32px;
-      --space-xl: 56px;
-      --space-2xl: 80px;
+    :root {
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root{
-        --bg: #0A1628;           /* Deep navy-black */
-        --bg-soft: #1A2332;      /* Dark slate */
-        --panel: #1F2937;        /* Card background */
-        --text: #F5F3F0;         /* Warm white text */
-        --text-soft: #E5E1DD;    /* Soft white */
-        --muted: #9CA3AF;        /* Cool gray */
+    /* Light theme (default) */
+    [data-theme="light"] {
+      --bg: #FFFEFB;
+      --bg-accent: #FAF8F5;
+      --surface: #FFFFFF;
+      --text: #1A1614;
+      --text-secondary: #4A4340;
+      --text-muted: #6B6461;
+      --border: rgba(106, 65, 28, 0.12);
+      --border-strong: rgba(106, 65, 28, 0.2);
 
-        --navy: #5B9BD5;         /* Lighter navy for dark mode */
-        --navy-soft: #7AB3E8;
-        --gold: #FEBC11;
-        --gold-burnt: #F0C563;
-        --coral: #F0A683;
-        --sage: #A5C4AE;
+      /* UCSB Colors */
+      --navy: #003660;
+      --navy-light: #0A4A7A;
+      --gold: #FEBC11;
+      --gold-dark: #DCA945;
+      --coral: #E8956F;
+      --sage: #8FAA96;
 
-        --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.3);
-        --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-      }
+      --shadow: 0 4px 24px rgba(106, 65, 28, 0.08);
+      --shadow-lg: 0 8px 40px rgba(106, 65, 28, 0.12);
+    }
+
+    /* Dark theme */
+    [data-theme="dark"] {
+      --bg: #0A1628;
+      --bg-accent: #111D33;
+      --surface: #1A2538;
+      --text: #F5F3F0;
+      --text-secondary: #D5D1CD;
+      --text-muted: #9CA3AF;
+      --border: rgba(255, 255, 255, 0.12);
+      --border-strong: rgba(255, 255, 255, 0.2);
+
+      --navy: #5B9BD5;
+      --navy-light: #7AB3E8;
+      --gold: #FEBC11;
+      --gold-dark: #F0C563;
+      --coral: #F0A683;
+      --sage: #A5C4AE;
+
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     html {
       scroll-behavior: smooth;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
-    body{
-      margin:0;
+    body {
       font-family: var(--font-sans);
       background: var(--bg);
-      color: var(--text-soft);
-      line-height: 1.7;
+      color: var(--text-secondary);
+      line-height: 1.65;
       font-size: 17px;
-      font-weight: 350;
-      letter-spacing: -0.01em;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3 {
       color: var(--text);
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: -0.03em;
-      line-height: 1.15;
+      line-height: 1.1;
     }
 
-    .container{
-      max-width: var(--maxw);
+    .container {
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 0 40px;
+      padding: 0 48px;
     }
 
     @media (max-width: 768px) {
       .container { padding: 0 24px; }
     }
 
-    .stack{ display:flex; gap:20px; align-items:center; flex-wrap: wrap; }
-    .between{ display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    /* Navigation */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      background: rgba(255, 254, 251, 0.8);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s ease;
+    }
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding: 14px 28px;
-      border-radius: 999px;
+    [data-theme="dark"] .nav {
+      background: rgba(10, 22, 40, 0.8);
+    }
+
+    .nav-inner {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 17px;
+      color: var(--text);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .brand:hover { opacity: 0.7; }
+
+    .brand img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: white;
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .nav-link {
+      padding: 8px 16px;
+      border-radius: 8px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      transition: all 0.2s;
+    }
+
+    .nav-link:hover {
+      background: var(--bg-accent);
+      color: var(--text);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 18px;
+    }
+
+    .theme-toggle:hover {
+      background: var(--bg-accent);
+      border-color: var(--border-strong);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      border-radius: 10px;
       font-weight: 600;
-      font-size: 16px;
-      text-decoration:none;
+      font-size: 15px;
+      text-decoration: none;
       border: 2px solid transparent;
-      background: var(--navy);
-      color: #fff;
-      box-shadow: var(--shadow-soft);
-      transition: all .2s ease;
+      transition: all 0.2s;
       cursor: pointer;
     }
 
-    .btn:hover{
-      transform: translateY(-1px);
-      box-shadow: var(--shadow);
-      background: var(--navy-soft);
-      text-decoration:none;
+    .btn-primary {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
     }
 
-    .btn.secondary{
+    .btn-primary:hover {
+      background: var(--navy-light);
+      border-color: var(--navy-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
       background: transparent;
       color: var(--navy);
       border-color: var(--navy);
-      box-shadow: none;
     }
 
-    .btn.secondary:hover{
+    .btn-secondary:hover {
       background: var(--navy);
-      color: #fff;
+      color: white;
     }
 
-    /* --- Top Nav --- */
-    .nav{
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: saturate(180%) blur(12px);
-      background: rgba(250, 248, 245, 0.85);
-      border-bottom: 1px solid rgba(106, 65, 28, 0.08);
+    @media (max-width: 860px) {
+      .nav-center { display: none; }
     }
 
-    @media (prefers-color-scheme: dark) {
-      .nav {
-        background: rgba(10, 22, 40, 0.85);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    /* Hero Section - Asymmetric */
+    .hero {
+      padding: 120px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+      opacity: 0.08;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+    }
+
+    @media (max-width: 968px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
       }
+      .hero { padding: 80px 0 60px; }
     }
 
-    .nav-inner{
-      height: 80px;
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 72px);
+      margin-bottom: 24px;
+      line-height: 1.08;
+    }
+
+    .hero .accent-text {
+      color: var(--navy);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero .accent-text::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 0;
+      right: 0;
+      height: 12px;
+      background: var(--gold);
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    .hero .lead {
+      font-size: 20px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      max-width: 600px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Stats Card */
+    .stats-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-item {
+      padding: 24px 0;
+    }
+
+    .stat-item:not(:last-child) {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat-value {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--navy);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 15px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Sections */
+    section {
+      padding: 100px 0;
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 64px 0; }
+    }
+
+    .section-header {
+      margin-bottom: 56px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: clamp(36px, 5vw, 56px);
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Overview Section - Full Width */
+    #overview {
+      background: var(--bg-accent);
+      padding: 80px 0;
+    }
+
+    #overview .content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    #overview h2 {
+      font-size: clamp(32px, 4vw, 48px);
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    #overview p {
+      font-size: 19px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+
+    /* Cards - New Style with Colored Accents */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    @media (max-width: 1100px) {
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 680px) {
+      .card-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--navy), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-strong);
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+      background: var(--bg-accent);
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .card p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* FAQ - Accordion Style */
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 16px;
+      transition: all 0.2s;
+    }
+
+    details:hover {
+      border-color: var(--border-strong);
+    }
+
+    details[open] {
+      box-shadow: var(--shadow);
+    }
+
+    summary {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      cursor: pointer;
+      list-style: none;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:14px;
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: '+';
+      font-size: 24px;
+      color: var(--navy);
+      font-weight: 300;
+      transition: transform 0.2s;
+    }
+
+    details[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    details p {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-accent);
+      border-top: 1px solid var(--border);
+      padding: 64px 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 64px;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       font-weight: 800;
       font-size: 18px;
-      letter-spacing: -0.02em;
       color: var(--text);
-      text-decoration: none;
+      margin-bottom: 16px;
     }
 
-    .brand img{
+    .footer-brand img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: white;
+    }
+
+    .footer-text {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .social-link {
       width: 44px;
       height: 44px;
-      object-fit: contain;
       border-radius: 10px;
-      background: #fff;
-    }
-
-    .brand:hover { text-decoration: none; opacity: 0.8; }
-
-    .nav-links{
+      background: var(--surface);
+      border: 1px solid var(--border);
       display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .nav-links a{
-      color: var(--text-soft);
-      padding: 10px 16px;
-      border-radius: 10px;
-      font-weight: 500;
-      font-size: 16px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-
-    .nav-links a:hover{
-      background: rgba(106, 65, 28, 0.06);
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .nav-links a:hover {
-        background: rgba(255, 255, 255, 0.08);
-      }
-    }
-
-    .social-links-nav{
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      margin-left: 12px;
-      padding-left: 12px;
-      border-left: 1px solid rgba(106, 65, 28, 0.12);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .social-links-nav {
-        border-left-color: rgba(255, 255, 255, 0.12);
-      }
-    }
-
-    .social-links-nav a{
-      display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 8px;
-      color: var(--muted);
-      transition: color .2s ease, opacity .2s ease;
-      opacity: 0.7;
-      border-radius: 8px;
-    }
-
-    .social-links-nav a:hover{
-      opacity: 1;
-      color: var(--navy);
-      background: rgba(106, 65, 28, 0.06);
+      color: var(--text);
       text-decoration: none;
+      transition: all 0.2s;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .social-links-nav a:hover {
-        background: rgba(255, 255, 255, 0.08);
-      }
+    .social-link:hover {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: white;
+      transform: translateY(-2px);
     }
 
-    .social-links-nav a svg{
+    .social-link svg {
       width: 20px;
       height: 20px;
       fill: currentColor;
     }
 
-    @media (max-width: 860px){
-      .nav-links { display: none; }
-    }
-
-    /* --- Hero --- */
-    .hero{
-      padding: var(--space-2xl) 0;
-      min-height: 70vh;
-      display: flex;
-      align-items: center;
-    }
-
-    @media (max-width: 768px) {
-      .hero {
-        padding: var(--space-xl) 0;
-        min-height: auto;
-      }
-    }
-
-    .hero-content{
-      max-width: 960px;
-      margin: 0 auto;
+    .footer-bottom {
       text-align: center;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 14px;
     }
 
-    .hero h1{
-      font-size: clamp(40px, 7vw, 88px);
-      line-height: 1.08;
-      margin: 0 0 28px;
-      font-weight: 800;
-      letter-spacing: -0.04em;
+    .footer-contact {
+      margin-bottom: 12px;
     }
 
-    .hero .gradient-text {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--gold-burnt) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero p.lead{
-      font-size: clamp(18px, 2.5vw, 22px);
-      line-height: 1.75;
-      color: var(--text-soft);
-      margin: 0 0 36px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      font-weight: 400;
-    }
-
-    .hero .cta-group {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    /* --- Sections --- */
-    section{
-      padding: var(--space-2xl) 0;
-    }
-
-    @media (max-width: 768px) {
-      section {
-        padding: var(--space-xl) 0;
-      }
-    }
-
-    .section-header{
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 48px;
-    }
-
-    @media (max-width: 768px) {
-      .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        margin-bottom: 32px;
-      }
-    }
-
-    .section-header h2{
-      font-size: clamp(32px, 5vw, 52px);
-      margin: 0;
-      font-weight: 800;
-    }
-
-    .muted{ color: var(--muted); }
-
-    .card-grid{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-
-    .card{
-      background: var(--panel);
-      border: 1px solid rgba(106, 65, 28, 0.1);
-      border-radius: var(--radius);
-      padding: 36px;
-      box-shadow: var(--shadow-soft);
-      transition: all .25s ease;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .card {
-        border-color: rgba(255, 255, 255, 0.08);
-      }
-    }
-
-    .card:hover{
-      transform: translateY(-4px);
-      box-shadow: var(--shadow);
-    }
-
-    .card h3{
-      margin: 0 0 12px;
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .card p{
-      margin: 0;
-      color: var(--text-soft);
-      font-size: 17px;
-      line-height: 1.7;
-    }
-
-    @media (max-width: 1000px){
-      .card-grid{ grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 640px){
-      .card-grid{ grid-template-columns: 1fr; }
-      .card { padding: 28px; }
-    }
-
-    /* --- Overview Section --- */
-    #overview {
-      padding-top: 0;
-      padding-bottom: var(--space-xl);
-    }
-
-    #overview .section-header {
-      justify-content: center;
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    #overview p {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: left;
-      font-size: clamp(17px, 2vw, 20px);
-      line-height: 1.8;
-      color: var(--text-soft);
-    }
-
-    /* --- FAQ --- */
-    details{
-      background: var(--panel);
-      border: 1px solid rgba(106, 65, 28, 0.1);
-      border-radius: var(--radius-sm);
-      padding: 20px 28px;
-      margin-bottom: 16px;
-      transition: all 0.2s ease;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      details {
-        border-color: rgba(255, 255, 255, 0.08);
-      }
-    }
-
-    details:hover {
-      box-shadow: var(--shadow-soft);
-    }
-
-    details[open] {
-      box-shadow: var(--shadow-soft);
-    }
-
-    summary{
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 18px;
-      color: var(--text);
-      padding: 4px 0;
-    }
-
-    summary::-webkit-details-marker{ display: none; }
-
-    details p {
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(106, 65, 28, 0.08);
-      color: var(--text-soft);
-      line-height: 1.75;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      details p {
-        border-top-color: rgba(255, 255, 255, 0.08);
-      }
-    }
-
-    /* --- Footer --- */
-    footer{
-      padding: var(--space-xl) 0 var(--space-2xl);
-      border-top: 1px solid rgba(106, 65, 28, 0.1);
-      margin-top: var(--space-2xl);
-      background: var(--bg-soft);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      footer {
-        border-top-color: rgba(255, 255, 255, 0.08);
-      }
-    }
-
-    .footer-grid{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      align-items: center;
-    }
-
-    @media (max-width: 768px){
-      .footer-grid{
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 32px;
-      }
-      .footer-grid .between{ justify-content: center; }
-      .footer-grid > div:last-child{ justify-content: center !important; }
-    }
-
-    .footer-grid .brand {
-      font-size: 16px;
-    }
-
-    .footer-grid .brand img {
-      width: 36px;
-      height: 36px;
-    }
-
-    footer p {
-      margin: 8px 0;
-      font-size: 15px;
-      color: var(--muted);
-    }
-
-    footer a {
+    .footer-contact a {
       color: var(--navy);
       text-decoration: none;
-      transition: opacity 0.2s ease;
     }
 
-    footer a:hover {
-      opacity: 0.7;
+    .footer-contact a:hover {
+      text-decoration: underline;
     }
 
-    /* --- Social Links --- */
-    .social-links{
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .social-link{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: rgba(106, 65, 28, 0.06);
-      border: 1px solid rgba(106, 65, 28, 0.1);
-      color: var(--text);
-      transition: all .2s ease;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .social-link {
-        background: rgba(255, 255, 255, 0.06);
-        border-color: rgba(255, 255, 255, 0.1);
-      }
-    }
-
-    .social-link:hover{
-      background: var(--navy);
-      border-color: var(--navy);
-      color: #fff;
-      transform: translateY(-2px);
-      text-decoration: none;
-    }
-
-    .social-link svg{
-      width: 22px;
-      height: 22px;
-      fill: currentColor;
-    }
-
-    /* --- Utilities --- */
-    .sr-only{
+    /* Utilities */
+    .sr-only {
       position: absolute;
       width: 1px;
       height: 1px;
@@ -616,107 +649,108 @@
       clip: rect(0,0,0,0);
       border: 0;
     }
-
-    /* Fade-in animation */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .fade-in {
-      animation: fadeInUp 0.8s ease-out forwards;
-      opacity: 0;
-    }
-
-    .fade-in.delay-1 { animation-delay: 0.1s; }
-    .fade-in.delay-2 { animation-delay: 0.2s; }
-    .fade-in.delay-3 { animation-delay: 0.3s; }
   </style>
 </head>
 <body>
   <a class="sr-only" href="#main">Skip to content</a>
 
-  <!-- NAVBAR -->
+  <!-- Navigation -->
   <nav class="nav">
     <div class="container nav-inner">
-      <a href="/" class="brand" aria-label="UCSB AI Safety Club Home">
-        <img src="assets/logo.png" alt="UCSB AI Safety Club logo" onerror="this.style.display='none'">
-        <span>UCSB AI Safety Club</span>
+      <a href="/" class="brand">
+        <img src="assets/logo.png" alt="Logo" onerror="this.style.display='none'">
+        <span>UCSB AI Safety</span>
       </a>
-      <div class="nav-links" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#activities">Activities</a>
-        <a href="#faq">FAQ</a>
-        <a href="https://linktr.ee/ucsbaisafety" target="_blank" rel="noopener" class="btn" style="padding:10px 20px;">Join</a>
-        <div class="social-links-nav">
-          <a href="https://instagram.com/ucsbaisafety" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-          </a>
-          <a href="https://x.com/ucsbaisafety" target="_blank" rel="noopener" aria-label="X (Twitter)">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
-          </a>
-        </div>
+
+      <div class="nav-center">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#activities" class="nav-link">Activities</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </div>
+
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <span id="themeIcon">☀️</span>
+        </button>
+        <a href="https://linktr.ee/ucsbaisafety" target="_blank" rel="noopener" class="btn btn-primary">Join</a>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <header class="hero">
+  <!-- Hero -->
+  <section class="hero">
     <div class="container">
-      <div class="hero-content fade-in">
-        <h1>A group of UCSB students working on <span class="gradient-text">AI safety</span>.</h1>
-        <p class="lead">We're a welcoming community of UC Santa Barbara students discussing and researching the technical and political challenges of AI safety. Advanced AI systems have the potential to dramatically change the world. We'd like them to change it for the better.</p>
-        <div class="cta-group">
-          <a class="btn" href="https://linktr.ee/ucsbaisafety" target="_blank" rel="noopener">Join via Linktree</a>
-          <a class="btn secondary" href="#about">Learn more</a>
+      <div class="hero-grid">
+        <div>
+          <h1>
+            Building a safer future for <span class="accent-text">artificial intelligence</span>
+          </h1>
+          <p class="lead">
+            A community of UC Santa Barbara students researching and discussing the technical and political challenges of AI safety.
+          </p>
+          <div class="hero-cta">
+            <a href="https://linktr.ee/ucsbaisafety" target="_blank" rel="noopener" class="btn btn-primary">Join via Linktree</a>
+            <a href="#about" class="btn btn-secondary">Learn more</a>
+          </div>
+        </div>
+
+        <div class="stats-card">
+          <div class="stat-item">
+            <span class="stat-value">Open</span>
+            <span class="stat-label">To all majors & experience levels</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">Active</span>
+            <span class="stat-label">Weekly meetings & discussions</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">Growing</span>
+            <span class="stat-label">Join our community today</span>
+          </div>
         </div>
       </div>
     </div>
-  </header>
+  </section>
 
   <main id="main">
-    <!-- AI SAFETY OVERVIEW -->
+    <!-- Overview -->
     <section id="overview">
       <div class="container">
-        <div class="section-header">
+        <div class="content">
           <h2>What is AI safety?</h2>
-        </div>
-        <p>
+          <p>
             AI safety is the study of how to ensure increasingly capable artificial intelligence systems remain aligned with human values and
             beneficial to society. Our focus spans <strong>technical research, ethics, and policy</strong> — from preventing
             <strong>catastrophic failures</strong> in advanced systems to understanding more gradual <strong>social and economic impacts</strong>.
-            <br><br>We discuss topics including, but not limited to: the threat of superintelligence, the economic impacts of AGI, timelines to AGI capabilities, the AI alignment problem, moral problems of machine consciousness,
+          </p>
+          <br>
+          <p>
+            We discuss topics including, but not limited to: the threat of superintelligence, the economic impacts of AGI, timelines to AGI capabilities, the AI alignment problem, moral problems of machine consciousness,
             gradual disempowerment, LLM psychosis, global AGI race dynamics, international diplomacy, theoretical limits of intelligence, and simulation theory.
-        </p>
+          </p>
+        </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
+    <!-- About -->
     <section id="about">
       <div class="container">
         <div class="section-header">
-          <h2>About the Club</h2>
+          <h2 class="section-title">About the Club</h2>
         </div>
         <div class="card-grid">
-          <div class="card fade-in">
+          <div class="card">
+            <div class="card-icon">🎯</div>
             <h3>Mission</h3>
             <p>Our mission is to build a welcoming community of UCSB students dedicated to discussing and solving the problems around advanced artificial intelligence.</p>
           </div>
-          <div class="card fade-in delay-1">
+          <div class="card">
+            <div class="card-icon">👥</div>
             <h3>Who it's for</h3>
             <p>Students from any major and experience level are welcome—whether you've trained your own models or you're barely understand AI. Join us to learn more.</p>
           </div>
-          <div class="card fade-in delay-2">
+          <div class="card">
+            <div class="card-icon">🚀</div>
             <h3>What we do</h3>
             <p>Discussion meetings, reading groups, research projects, paper replication, collaboration with faculty and labs, and talks with guest speakers.</p>
           </div>
@@ -724,23 +758,26 @@
       </div>
     </section>
 
-    <!-- ACTIVITIES -->
+    <!-- Activities -->
     <section id="activities">
       <div class="container">
         <div class="section-header">
-          <h2>Activities</h2>
-          <a class="btn secondary" href="https://linktr.ee/ucsbaisafety" target="_blank" rel="noopener">Get Involved</a>
+          <h2 class="section-title">Activities</h2>
+          <p class="section-subtitle">Join us for engaging discussions, hands-on projects, and learning opportunities</p>
         </div>
         <div class="card-grid">
-          <div class="card fade-in">
+          <div class="card">
+            <div class="card-icon">💬</div>
             <h3>General meetings</h3>
             <p>We host short presentations paired with open discussions on different topics in AI safety.</p>
           </div>
-          <div class="card fade-in delay-1">
+          <div class="card">
+            <div class="card-icon">🔬</div>
             <h3>Projects</h3>
             <p>Team research projects to advance technical skills in model development, alignment, and interpretability.</p>
           </div>
-          <div class="card fade-in delay-2">
+          <div class="card">
+            <div class="card-icon">🎤</div>
             <h3>Talks & Workshops</h3>
             <p>Guest speakers from academia and industry, skill-building workshops (ML, stats, governance, risk analysis).</p>
           </div>
@@ -752,97 +789,115 @@
     <section id="faq">
       <div class="container">
         <div class="section-header">
-          <h2>FAQ</h2>
-          <p class="muted">Quick answers for new members.</p>
+          <h2 class="section-title">FAQ</h2>
+          <p class="section-subtitle">Quick answers for new members</p>
         </div>
-        <details class="fade-in">
-          <summary>What is AI safety?</summary>
-          <p>AI safety is the field focused on making increasingly capable AI systems reliable, aligned with human values, robust to misuse, and governable. It spans technical work (e.g. interpretability, robustness, evals, alignment), risk assessment, policy, and responsible deployment practices.</p>
-        </details>
-        <details class="fade-in delay-1">
-          <summary>Do I need prior AI/ML background?</summary>
-          <p>No! People from all backgrounds are welcome. Some level of technical understanding is important, but discussions on AI are often more philosophical than mathematical.</p>
-        </details>
-        <details class="fade-in delay-2">
-          <summary>How do I join?</summary>
-          <p>Use our <a href="https://linktr.ee/ucsbaisafety" target="_blank" rel="noopener">Linktree</a> for the Discord, Instagram, GroupMe, Shoreline, and Twitter. Say hi on the Discord or just show up to any event!</p>
-        </details>
-        <details class="fade-in delay-3">
-          <summary>Can I propose a project or talk?</summary>
-          <p>Yes—contact us at <a href="mailto:contact@ucsbaisafety.org">contact@ucsbaisafety.org. </a></p>
-        </details>
+        <div class="faq-list">
+          <details>
+            <summary>What is AI safety?</summary>
+            <p>AI safety is the field focused on making increasingly capable AI systems reliable, aligned with human values, robust to misuse, and governable. It spans technical work (e.g. interpretability, robustness, evals, alignment), risk assessment, policy, and responsible deployment practices.</p>
+          </details>
+          <details>
+            <summary>Do I need prior AI/ML background?</summary>
+            <p>No! People from all backgrounds are welcome. Some level of technical understanding is important, but discussions on AI are often more philosophical than mathematical.</p>
+          </details>
+          <details>
+            <summary>How do I join?</summary>
+            <p>Use our <a href="https://linktr.ee/ucsbaisafety" target="_blank" rel="noopener">Linktree</a> for the Discord, Instagram, GroupMe, Shoreline, and Twitter. Say hi on the Discord or just show up to any event!</p>
+          </details>
+          <details>
+            <summary>Can I propose a project or talk?</summary>
+            <p>Yes—contact us at <a href="mailto:contact@ucsbaisafety.org">contact@ucsbaisafety.org</a>.</p>
+          </details>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
+  <!-- Footer -->
   <footer>
-    <div class="container footer-grid">
-      <div>
-        <div class="brand">
-          <img src="assets/logo.png" alt="UCSB AI Safety Club logo small" onerror="this.style.display='none'">
-          <strong>UCSB AI Safety Club</strong>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <img src="assets/logo.png" alt="Logo" onerror="this.style.display='none'">
+            <span>UCSB AI Safety Club</span>
+          </div>
+          <p class="footer-text">
+            A community of UC Santa Barbara students dedicated to making advanced AI systems safe and beneficial for humanity.
+          </p>
+          <div class="footer-links">
+            <a href="https://instagram.com/ucsbaisafety" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="https://x.com/ucsbaisafety" target="_blank" rel="noopener" class="social-link" aria-label="X">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
         </div>
-        <p>© <span id="year"></span> UCSB AI Safety Club</p>
-        <p>Contact: <a href="mailto:contact@ucsbaisafety.org">contact@ucsbaisafety.org</a></p>
-        <p>Linktree: <a href="https://linktr.ee/ucsbaisafety">linktr.ee/ucsbaisafety</a></p>
+
+        <div>
+          <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--text);">Get Involved</h3>
+          <p class="footer-text" style="margin-bottom: 12px;">
+            <strong>Linktree:</strong> <a href="https://linktr.ee/ucsbaisafety" style="color: var(--navy); text-decoration: none;">linktr.ee/ucsbaisafety</a>
+          </p>
+          <p class="footer-text">
+            <strong>Email:</strong> <a href="mailto:contact@ucsbaisafety.org" style="color: var(--navy); text-decoration: none;">contact@ucsbaisafety.org</a>
+          </p>
+        </div>
       </div>
-      <div style="display:flex; justify-content:flex-end; align-items:center;">
-        <div class="social-links">
-          <a href="https://instagram.com/ucsbaisafety" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-          </a>
-          <a href="https://x.com/ucsbaisafety" target="_blank" rel="noopener" class="social-link" aria-label="X (Twitter)">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
-          </a>
-        </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> UCSB AI Safety Club. Built with care for a safer AI future.</p>
       </div>
     </div>
   </footer>
 
   <script>
-    // Year stamp
+    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Smooth scroll with offset for in-page nav links
-    const OFFSET = 80;
-    const links = document.querySelectorAll('.nav-links a[href^="#"]');
-    links.forEach(a => {
-      a.addEventListener('click', (e) => {
-        const href = a.getAttribute('href');
-        if(!href || !href.startsWith('#')) return;
-        const id = href.slice(1);
-        const target = document.getElementById(id);
-        if(!target) return;
-        e.preventDefault();
-        const y = target.getBoundingClientRect().top + window.scrollY - OFFSET;
-        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
-        try{ history.pushState(null, '', `#${id}`); }catch{}
-      });
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const html = document.documentElement;
+
+    // Check for saved theme or default to light
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
     });
 
-    // Intersection Observer for fade-in animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
+    function updateThemeIcon(theme) {
+      themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+    }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = 'running';
-          observer.unobserve(entry.target);
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          const offset = 72;
+          const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
         }
       });
-    }, observerOptions);
-
-    document.querySelectorAll('.fade-in').forEach(el => {
-      el.style.animationPlayState = 'paused';
-      observer.observe(el);
     });
   </script>
 </body>
