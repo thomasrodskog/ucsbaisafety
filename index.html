@@ -112,7 +112,7 @@
 
     * {
       margin: 0;
-      padding: 0;
+      padding: 10;
       box-sizing: border-box;
     }
 
@@ -172,7 +172,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: clamp(8px, 2vw, 24px);
     }
 
     .brand {
@@ -180,10 +180,12 @@
       align-items: center;
       gap: 12px;
       font-weight: 800;
-      font-size: 17px;
+      font-size: clamp(14px, 1.2vw, 17px);
       color: var(--text);
       text-decoration: none;
       transition: opacity 0.2s;
+      flex-shrink: 1;
+      min-width: 0;
     }
 
     .brand:hover {
@@ -195,12 +197,24 @@
       height: 40px;
       border-radius: 8px;
       background: white;
+      flex-shrink: 0;
+    }
+
+    .brand-full {
+      white-space: nowrap;
+    }
+
+    .brand-short {
+      display: none;
+      white-space: nowrap;
     }
 
     .nav-center {
       display: flex;
       gap: 4px;
       align-items: center;
+      flex-shrink: 1;
+      min-width: 0;
     }
 
     .nav-link {
@@ -221,7 +235,8 @@
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: clamp(6px, 1vw, 12px);
+      flex-shrink: 0;
     }
 
     /* Theme Toggle */
@@ -258,6 +273,7 @@
       transition: all 0.2s;
       cursor: pointer;
       font-family: var(--font-sans);
+      white-space: nowrap;
     }
 
     .btn-primary {
@@ -284,8 +300,47 @@
       border-color: var(--text);
     }
 
+    @media (max-width: 940px) and (min-width: 861px) {
+      .brand-full {
+        display: none;
+      }
+
+      .brand-short {
+        display: inline;
+      }
+    }
+
     @media (max-width: 860px) {
       .nav-center {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .brand img {
+        width: 36px;
+        height: 36px;
+      }
+
+      .theme-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+      }
+
+      .btn {
+        padding: 10px 14px;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .btn {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+
+      .nav-right .btn-secondary {
         display: none;
       }
     }
@@ -321,6 +376,10 @@
       .hero-grid {
         grid-template-columns: 1fr;
         gap: 48px;
+      }
+
+      .stats-card {
+        display: none;
       }
 
       .hero {
@@ -423,6 +482,7 @@
     #overview .content {
       max-width: 900px;
       margin: 0 auto;
+      padding: 0 40px;
     }
 
     #overview h2 {
@@ -432,9 +492,15 @@
     }
 
     #overview p {
-      font-size: 19px;
+      font-size: 16px;
       line-height: 1.8;
       color: var(--text-secondary);
+    }
+
+    @media (max-width: 768px) {
+      #overview .content {
+        padding: 0 24px;
+      }
     }
 
     /* Cards - New Style with Colored Accents */
@@ -655,6 +721,30 @@
       text-decoration: underline;
     }
 
+    /* Calendar */
+    .calendar-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .calendar-container iframe {
+      width: 100%;
+      height: 420px;
+      border: 0;
+    }
+
+    @media (max-width: 768px) {
+      .calendar-container iframe {
+        height: 350px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .calendar-container iframe {
+        height: 300px;
+      }
+    }
+
     /* Utilities */
     .sr-only {
       position: absolute;
@@ -677,7 +767,8 @@
     <div class="container nav-inner">
       <a href="/" class="brand">
         <img src="assets/logo.png" alt="Logo" onerror="this.style.display='none'">
-        <span>AI Safety at UCSB</span>
+        <span class="brand-full">AI Safety at UCSB</span>
+        <span class="brand-short">AIS@UCSB</span>
       </a>
 
       <div class="nav-center">
@@ -826,8 +917,8 @@
           <h2 class="section-title">Events Calendar</h2>
           <p class="section-subtitle">Stay updated with our upcoming meetings, workshops, and events</p>
         </div>
-        <div style="display: flex; justify-content: center; overflow-x: auto;">
-          <iframe src="https://calendar.google.com/calendar/embed?src=6f6789d16cb28e4b2d624231e11d99a2712891ae4fa014a17469896b11ca9bd4%40group.calendar.google.com&ctz=America%2FLos_Angeles" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        <div class="calendar-container">
+          <iframe src="https://calendar.google.com/calendar/embed?src=6f6789d16cb28e4b2d624231e11d99a2712891ae4fa014a17469896b11ca9bd4%40group.calendar.google.com&ctz=America%2FLos_Angeles" frameborder="0" scrolling="no"></iframe>
         </div>
       </div>
     </section>
@@ -914,7 +1005,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>© <span id="year"></span> AI Safety Club at UCSB. Built with care for a safer AI future.</p>
+        <p>© <span id="year"></span> AI Safety Club at UCSB.</p>
       </div>
     </div>
   </footer>
